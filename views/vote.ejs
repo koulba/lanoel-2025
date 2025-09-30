@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Vote — LANoël 2025</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="/public/css/style.css" rel="stylesheet" />
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background:#f5f5f5; color:#000; margin:0; padding:0; }
+    .topbar { background:#000; color:#fff; padding:1rem 0; }
+    .topbar .container { display:flex; justify-content:space-between; align-items:center; }
+    .topbar .brand { font-size:1.8rem; font-weight:bold; }
+    .topbar nav a.btn { display:inline-block; margin-left:1rem; padding:0.5rem 1rem; background:#fff; color:#000; border-radius:10px; text-decoration:none; transition:all 0.3s ease; }
+    .topbar nav a.btn:hover { background:#333; color:#fff; }
+
+    .container { max-width:1000px; margin:2rem auto; padding:0 1rem; }
+    .vote-counter { font-size:1.1rem; margin-bottom:1rem; text-align:center; color:#333; }
+
+    .games-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:1rem; }
+    .card { background:#fff; border-radius:15px; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1); cursor:pointer; transition:transform 0.3s ease, box-shadow 0.3s ease; text-align:center; }
+    .card:hover { transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.15); }
+    .card img { width:100%; height:150px; object-fit:cover; display:block; }
+    .card h4 { margin:0.5rem 0; font-size:1.1rem; }
+    .card.selected { border:3px solid #000; }
+
+    .btn-primary { display:block; margin:2rem auto; padding:0.8rem 2rem; background:#000; color:#fff; border-radius:10px; text-decoration:none; font-weight:bold; transition:all 0.3s ease; }
+    .btn-primary:hover { background:#333; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <h1 class="brand">LANoël 2025 — Vote</h1>
+      <nav>
+        <span>Hi <%= user.pseudo %></span>
+        <a class="btn" href="/">Accueil</a>
+        <a class="btn" href="/logout">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- compteur -->
+    <div class="vote-counter">
+      Tu as voté pour <strong><%= votesCount %></strong> / 8 jeux
+    </div>
+
+    <div class="games-grid">
+      <% games.forEach(function(game){ %>
+        <form method="post" action="/vote/<%= game.id %>" style="margin:0;">
+          <div class="card <%= userVotes.includes(game.id) ? 'selected' : '' %>" onclick="this.closest('form').submit()">
+            <% if(game.image){ %>
+              <img src="<%= game.image %>" alt="<%= game.name %>" />
+            <% } %>
+            <h4><%= game.name %></h4>
+            <p><%= game.description %></p>
+          </div>
+        </form>
+      <% }) %>
+    </div>
+
+    <a href="/" class="btn-primary">Retour à l’accueil</a>
+  </main>
+
+  <script>
+    // Optionnel : effet visuel rapide pour mettre à jour le compteur sans refresh
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(c => {
+      c.addEventListener('click', ()=> {
+        c.classList.toggle('selected');
+      });
+    });
+  </script>
+</body>
+</html>

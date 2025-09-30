@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Login — LANoël</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="/public/css/style.css" rel="stylesheet" />
+</head>
+<body>
+  <main class="container small">
+    <h2>Se connecter</h2>
+
+    <% if (messages.error) { %>
+      <div class="alert"><%= messages.error %></div>
+    <% } %>
+
+    <form method="post" action="/login">
+      <label>Pseudo</label>
+      <input name="pseudo" type="text" required />
+
+      <label>Mot de passe</label>
+      <input name="password" type="password" required />
+
+      <div style="margin-top:12px">
+        <button class="btn">Login</button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

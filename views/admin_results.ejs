@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Admin — Results</title>
+  <link rel="stylesheet" href="/public/css/style.css" />
+  <style>
+    .container{ max-width:1000px; margin:2rem auto; padding:0 1rem;}
+    table{ width:100%; border-collapse:collapse;}
+    th,td{ padding:8px; border-bottom:1px solid #eee;}
+    .btn{ padding:6px 10px; background:#000;color:#fff; border-radius:6px; text-decoration:none;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Résultats enregistrés</h1>
+    <a class="btn" href="/admin">Retour admin</a>
+    <table>
+      <thead><tr><th>ID</th><th>Jeu</th><th>Équipe</th><th>Score</th><th>Points</th><th>Actions</th></tr></thead>
+      <tbody>
+        <% results.forEach(function(r){ %>
+          <tr>
+            <td><%= r.id %></td>
+            <td><%= r.game_name %></td>
+            <td><%= r.team_name %></td>
+            <td>
+              <form method="post" action="/admin/results/<%= r.id %>/update" style="display:flex; gap:8px;">
+                <input name="score" value="<%= r.score %>" style="width:80px" />
+            </td>
+            <td>
+                <input name="points" value="<%= r.points %>" style="width:80px" />
+            </td>
+            <td>
+                <button class="btn" type="submit">Enregistrer</button>
+              </form>
+              <form method="post" action="/admin/results/<%= r.id %>/delete" style="display:inline;">
+                <button class="btn" onclick="return confirm('Supprimer ce résultat ?')">Supprimer</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Barème — <%= game.name %></title>
+  <link rel="stylesheet" href="/public/css/style.css" />
+  <style>.container{max-width:800px;margin:2rem auto;padding:0 1rem;} table{width:100%;border-collapse:collapse;}td,th{padding:8px;border-bottom:1px solid #eee;} .btn{padding:6px 10px;background:#000;color:#fff;border-radius:6px;text-decoration:none;}</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Barème de points — <%= game.name %></h1>
+    <a class="btn" href="/admin">Retour admin</a>
+
+    <h3>Règles existantes</h3>
+    <table>
+      <thead><tr><th>Place</th><th>Points</th><th>Action</th></tr></thead>
+      <tbody>
+        <% rules.forEach(function(r){ %>
+          <tr>
+            <td><%= r.place %></td>
+            <td><%= r.points %></td>
+            <td>
+              <form method="post" action="/admin/scoring/<%= r.id %>/delete" style="display:inline;">
+                <button class="btn" onclick="return confirm('Supprimer cette règle ?')">Supprimer</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <h3>Ajouter / Mettre à jour une règle</h3>
+    <form method="post" action="/admin/scoring/<%= game.id %>/add">
+      <label>Place (ex: 1 pour 1er)</label>
+      <input name="place" type="number" required />
+      <label>Points</label>
+      <input name="points" type="number" required />
+      <div style="margin-top:10px"><button class="btn">Ajouter / Mettre à jour</button></div>
+    </form>
+  </div>
+</body>
+</html>

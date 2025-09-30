@@ -1,0 +1,197 @@
+body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; background:#f7f7f7; color:#111; line-height:1.5; margin:0; padding:0; }
+.container { width:90%; max-width:1200px; margin:2rem auto; }
+
+/* Topbar */
+.topbar { background:#111; color:#fff; padding:1rem 0; display:flex; align-items:center; justify-content:space-between; }
+.topbar .brand { font-size:1.8rem; font-weight:600; }
+.topbar nav a, .topbar nav span { color:#fff; margin-left:1rem; text-decoration:none; }
+.topbar nav a.btn { background:#fff; color:#111; padding:0.4rem 0.8rem; border-radius:6px; transition:0.2s; }
+.topbar nav a.btn:hover { background:#eee; }
+
+/* Card sections */
+.card { background:#fff; padding:1.5rem; margin-bottom:2rem; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.05); }
+.card h2 { margin-bottom:1rem; font-size:1.5rem; border-bottom:1px solid #eee; padding-bottom:0.3rem; }
+
+/* Form styles */
+form input, form select { width:100%; padding:0.5rem 0.7rem; margin-bottom:0.8rem; border-radius:6px; border:1px solid #ddd; transition:0.2s; }
+form input:focus, form select:focus { border-color:#111; outline:none; }
+button.btn { background:#111; color:#fff; border:none; padding:0.5rem 1rem; border-radius:8px; cursor:pointer; transition:0.2s; }
+button.btn:hover { background:#333; }
+button.small-btn { background:#555; color:#fff; padding:0.3rem 0.6rem; border-radius:6px; margin-left:0.3rem; text-decoration:none; }
+button.small-btn:hover { background:#333; }
+
+/* Tables */
+.table-wrapper { overflow-x:auto; margin-top:1rem; }
+table { width:100%; border-collapse:collapse; }
+table th, table td { padding:0.7rem; border-bottom:1px solid #eee; text-align:left; }
+table th { background:#f0f0f0; }
+
+/* Flash messages */
+.alert { padding:0.6rem 1rem; margin-bottom:1rem; border-radius:6px; }
+.alert.success { background:#d4edda; color:#155724; }
+.alert.error { background:#f8d7da; color:#721c24; }
+
+/* Inline forms */
+.inline-form { display:inline; margin:0; padding:0; }
+
+/* Overlay modal */
+.modal-overlay {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+/* Modal box */
+.modal {
+  background:#fff;
+  padding:1.5rem;
+  border-radius:12px;
+  width:90%;
+  max-width:500px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+/* Close button */
+.modal .close-btn {
+  position:absolute;
+  top:0.5rem;
+  right:0.5rem;
+  background:#e74c3c;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  padding:0.2rem 0.5rem;
+  cursor:pointer;
+}
+
+/* Show modal */
+.modal-overlay.active { display:flex; }
+
+/* Classement */
+.leaderboard {
+  margin-top: 24px;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.ranking-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.ranking-table th, .ranking-table td {
+  padding: 12px 16px;
+  text-align: left;
+}
+
+.ranking-table th {
+  background: #2c3e50;
+  color: #fff;
+  font-weight: 600;
+}
+
+.ranking-table tbody tr:nth-child(even) {
+  background: #f8f9fa;
+}
+
+/* Effet podium */
+.ranking-table .rank-1 td {
+  background: #fffbea;
+  font-weight: bold;
+}
+.ranking-table .rank-2 td {
+  background: #f0f4ff;
+  font-weight: bold;
+}
+.ranking-table .rank-3 td {
+  background: #fff5f0;
+  font-weight: bold;
+}
+
+/* --- Topbar / Header --- */
+.topbar {
+  background: #000;
+  color: #fff;
+  height: 100px; /* Hauteur fixe */
+  display: flex;
+  justify-content: center; /* Centre horizontalement le logo */
+  align-items: center;     /* Centre verticalement */
+  position: relative;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.topbar .brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.topbar .brand img.logo {
+  max-height: 80px; /* Taille du logo */
+  width: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.topbar .brand img.logo:hover {
+  transform: scale(1.05);
+}
+
+.topbar nav {
+  position: absolute;
+  right: 1rem;       /* Garder les boutons à droite */
+  top: 50%;
+  transform: translateY(-50%); /* Centre verticalement par rapport au header */
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.topbar nav a.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #fff;
+  color: #000;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.topbar nav a.btn:hover {
+  background: #333;
+  color: #fff;
+}
+
+/* --- Responsive --- */
+@media(max-width: 600px) {
+  .topbar {
+    height: 80px;
+  }
+  .topbar .brand img.logo {
+    max-height: 60px;
+  }
+  .topbar nav a.btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 14px;
+  }
+}
+.hero-image {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0; /* espace vertical */
+}
+
+
